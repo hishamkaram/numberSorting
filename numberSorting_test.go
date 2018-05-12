@@ -99,7 +99,6 @@ func TestBubbleSort(t *testing.T) {
 	BubbleSort(d)
 	assert.Equal(t, d, sortedDataComb)
 }
-
 func BenchmarkMergeSort(b *testing.B) {
 	for n := 0; n < b.N; n++ {
 		MergeSort(dataChars)
@@ -107,8 +106,8 @@ func BenchmarkMergeSort(b *testing.B) {
 }
 
 func BenchmarkMergeSort10000(b *testing.B) {
-	data := make([]interface{}, 1000000)
-	for i := 0; i < 1000000; i++ {
+	data := make([]interface{}, 10000)
+	for i := 0; i < 10000; i++ {
 		data[i] = rand.Int()
 	}
 	for n := 0; n < b.N; n++ {
@@ -116,15 +115,6 @@ func BenchmarkMergeSort10000(b *testing.B) {
 	}
 }
 
-func BenchmarkBuiltIn(b *testing.B) {
-	data := make([]int, 1000000)
-	for i := 0; i < 1000000; i++ {
-		data[i] = rand.Int()
-	}
-	for n := 0; n < b.N; n++ {
-		sort.Sort(sort.IntSlice(data))
-	}
-}
 func BenchmarkMergeSortComb(b *testing.B) {
 	d := make([]interface{}, len(dataChars), len(dataComb))
 	copy(d, dataComb)
@@ -137,5 +127,122 @@ func BenchmarkMergeSortChars(b *testing.B) {
 	copy(d, dataChars)
 	for n := 0; n < b.N; n++ {
 		MergeSort(d)
+	}
+}
+func BenchmarkSelectionSort(b *testing.B) {
+	for n := 0; n < b.N; n++ {
+		SelectionSort(dataChars)
+	}
+}
+
+func BenchmarkSelectionSort10000(b *testing.B) {
+	data := make([]interface{}, 10000)
+	for i := 0; i < 10000; i++ {
+		data[i] = rand.Int()
+	}
+	for n := 0; n < b.N; n++ {
+		SelectionSort(data)
+	}
+}
+
+func BenchmarkSelectionSortComb(b *testing.B) {
+	d := make([]interface{}, len(dataChars), len(dataComb))
+	copy(d, dataComb)
+	for n := 0; n < b.N; n++ {
+		SelectionSort(d)
+	}
+}
+func BenchmarkSelectionSortChars(b *testing.B) {
+	d := make([]interface{}, len(dataChars), len(dataChars))
+	copy(d, dataChars)
+	for n := 0; n < b.N; n++ {
+		SelectionSort(d)
+	}
+}
+func BenchmarkInsertionSort(b *testing.B) {
+	for n := 0; n < b.N; n++ {
+		InsertionSort(dataChars)
+	}
+}
+
+func BenchmarkInsertionSort10000(b *testing.B) {
+	data := make([]interface{}, 10000)
+	for i := 0; i < 10000; i++ {
+		data[i] = rand.Int()
+	}
+	for n := 0; n < b.N; n++ {
+		InsertionSort(data)
+	}
+}
+func BenchmarkInsertionSortComb(b *testing.B) {
+	d := make([]interface{}, len(dataChars), len(dataComb))
+	copy(d, dataComb)
+	for n := 0; n < b.N; n++ {
+		InsertionSort(d)
+	}
+}
+func BenchmarkInsertionSortChars(b *testing.B) {
+	d := make([]interface{}, len(dataChars), len(dataChars))
+	copy(d, dataChars)
+	for n := 0; n < b.N; n++ {
+		InsertionSort(d)
+	}
+}
+func BenchmarkBubbleSort(b *testing.B) {
+	for n := 0; n < b.N; n++ {
+		BubbleSort(dataChars)
+	}
+}
+
+func BenchmarkBubbleSort10000(b *testing.B) {
+	data := make([]interface{}, 10000)
+	for i := 0; i < 10000; i++ {
+		data[i] = rand.Int()
+	}
+	for n := 0; n < b.N; n++ {
+		BubbleSort(data)
+	}
+}
+func BenchmarkBubbleSortComb(b *testing.B) {
+	d := make([]interface{}, len(dataChars), len(dataComb))
+	copy(d, dataComb)
+	for n := 0; n < b.N; n++ {
+		BubbleSort(d)
+	}
+}
+func BenchmarkBubbleSortChars(b *testing.B) {
+	d := make([]interface{}, len(dataChars), len(dataChars))
+	copy(d, dataChars)
+	for n := 0; n < b.N; n++ {
+		BubbleSort(d)
+	}
+}
+func BenchmarkMergeSortParallel(b *testing.B) {
+	data := make([]interface{}, 10000)
+	for i := 0; i < 10000; i++ {
+		data[i] = rand.Float64()
+	}
+	for n := 0; n < b.N; n++ {
+		MergeSortParallel(data)
+	}
+}
+func BenchmarkBuiltIn(b *testing.B) {
+	data := make([]float64, 10000)
+	for i := 0; i < 10000; i++ {
+		data[i] = rand.Float64()
+	}
+	for n := 0; n < b.N; n++ {
+		sort.Sort(sort.Float64Slice(data))
+	}
+}
+func BenchmarkGetFloat(b *testing.B) {
+	data := make([]float64, 10000)
+	for i := 0; i < 10000; i++ {
+		data[i] = rand.Float64()
+	}
+	for n := 0; n < b.N; n++ {
+		for i := 0; i < len(data); i++ {
+			getFloat(data[i])
+		}
 	}
 }

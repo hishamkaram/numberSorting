@@ -2,6 +2,7 @@ package numbersorting
 
 import (
 	"math"
+	"sync"
 )
 
 func getFloat(number interface{}) (converted float64) {
@@ -164,6 +165,30 @@ func mergeSort(arr []interface{}, l int, r int) {
 		mergeSort(arr, m+1, r)
 		merge(arr, l, m, r)
 	}
+
+}
+func mergeSortParallel(arr []interface{}, l int, r int) {
+	if l < r {
+		m := (l + (r - 1)) / 2
+		var wd sync.WaitGroup
+		wd.Add(2)
+		go func() {
+			mergeSort(arr, l, m)
+			wd.Done()
+		}()
+		go func() {
+			mergeSort(arr, m+1, r)
+			wd.Done()
+		}()
+		wd.Wait()
+		merge(arr, l, m, r)
+	}
+
+}
+
+//MergeSortParallel sort array of numbers in place
+func MergeSortParallel(slice []interface{}) {
+	mergeSort(slice, 0, len(slice)-1)
 
 }
 
