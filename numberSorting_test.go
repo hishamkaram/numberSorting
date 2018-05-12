@@ -113,6 +113,20 @@ func TestMergeSortParallel(t *testing.T) {
 	MergeSortParallel(d)
 	assert.Equal(t, d, sortedDataComb)
 }
+func TestQuickSortParallel(t *testing.T) {
+	d := make([]interface{}, len(data), len(data))
+	copy(d, data)
+	QuickSortParallel(d)
+	assert.Equal(t, d, sortedData)
+	d = make([]interface{}, len(dataChars), len(dataChars))
+	copy(d, dataChars)
+	QuickSortParallel(d)
+	assert.Equal(t, d, sortedDataChars)
+	d = make([]interface{}, len(dataComb), len(dataComb))
+	copy(d, dataComb)
+	QuickSortParallel(d)
+	assert.Equal(t, d, sortedDataComb)
+}
 func BenchmarkMergeSort(b *testing.B) {
 	for n := 0; n < b.N; n++ {
 		MergeSort(dataChars)
@@ -267,6 +281,15 @@ func BenchmarkMergeSortParallel(b *testing.B) {
 	}
 	for n := 0; n < b.N; n++ {
 		MergeSortParallel(data)
+	}
+}
+func BenchmarkQuickSortParallel(b *testing.B) {
+	data := make([]interface{}, 10000)
+	for i := 0; i < 10000; i++ {
+		data[i] = rand.Float64()
+	}
+	for n := 0; n < b.N; n++ {
+		QuickSortParallel(data)
 	}
 }
 func BenchmarkBuiltIn(b *testing.B) {

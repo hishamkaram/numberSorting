@@ -122,6 +122,16 @@ func QuickSort(slice []interface{}) {
 
 }
 
+//QuickSortParallel sort array of numbers in place
+func QuickSortParallel(slice []interface{}) {
+	if len(slice) > 1 {
+		pi := partition(slice)
+		QuickSortParallel(slice[:pi])
+		QuickSortParallel(slice[pi+1:])
+	}
+
+}
+
 func merge(arr []interface{}, l int, m int, r int) {
 	n1 := m - l + 1
 	n2 := r - m
@@ -193,7 +203,7 @@ func mergeSortParallel(arr []interface{}, l int, r int) {
 
 //MergeSortParallel sort array of numbers in place
 func MergeSortParallel(slice []interface{}) {
-	mergeSort(slice, 0, len(slice)-1)
+	mergeSortParallel(slice, 0, len(slice)-1)
 
 }
 
