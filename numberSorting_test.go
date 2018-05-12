@@ -217,6 +217,35 @@ func BenchmarkBubbleSortChars(b *testing.B) {
 		BubbleSort(d)
 	}
 }
+func BenchmarkQuickSort(b *testing.B) {
+	for n := 0; n < b.N; n++ {
+		QuickSort(dataChars)
+	}
+}
+
+func BenchmarkQuickSort10000(b *testing.B) {
+	data := make([]interface{}, 10000)
+	for i := 0; i < 10000; i++ {
+		data[i] = rand.Int()
+	}
+	for n := 0; n < b.N; n++ {
+		QuickSort(data)
+	}
+}
+func BenchmarkQuickSortComb(b *testing.B) {
+	d := make([]interface{}, len(dataChars), len(dataComb))
+	copy(d, dataComb)
+	for n := 0; n < b.N; n++ {
+		QuickSort(d)
+	}
+}
+func BenchmarkQuickSortChars(b *testing.B) {
+	d := make([]interface{}, len(dataChars), len(dataChars))
+	copy(d, dataChars)
+	for n := 0; n < b.N; n++ {
+		QuickSort(d)
+	}
+}
 func BenchmarkMergeSortParallel(b *testing.B) {
 	data := make([]interface{}, 10000)
 	for i := 0; i < 10000; i++ {

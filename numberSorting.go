@@ -125,6 +125,7 @@ func QuickSort(slice []interface{}) {
 func merge(arr []interface{}, l int, m int, r int) {
 	n1 := m - l + 1
 	n2 := r - m
+
 	L, R := make([]interface{}, n1, n1), make([]interface{}, n2, n2)
 	for i := 0; i < n1; i++ {
 		L[i] = arr[l+i]
@@ -161,8 +162,12 @@ func merge(arr []interface{}, l int, m int, r int) {
 func mergeSort(arr []interface{}, l int, r int) {
 	if l < r {
 		m := (l + (r - 1)) / 2
-		mergeSort(arr, l, m)
-		mergeSort(arr, m+1, r)
+		if m-l > 1 {
+			mergeSort(arr, l, m)
+		}
+		if r-m > 1 {
+			mergeSort(arr, m+1, r)
+		}
 		merge(arr, l, m, r)
 	}
 
