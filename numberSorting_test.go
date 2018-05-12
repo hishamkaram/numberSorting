@@ -101,14 +101,12 @@ func TestBubbleSort(t *testing.T) {
 }
 
 func BenchmarkMergeSort(b *testing.B) {
-	// run the Fib function b.N times
 	for n := 0; n < b.N; n++ {
 		MergeSort(dataChars)
 	}
 }
 
 func BenchmarkMergeSort10000(b *testing.B) {
-	// run the Fib function b.N times
 	data := make([]interface{}, 1000000)
 	for i := 0; i < 1000000; i++ {
 		data[i] = rand.Int()
@@ -119,7 +117,6 @@ func BenchmarkMergeSort10000(b *testing.B) {
 }
 
 func BenchmarkBuiltIn(b *testing.B) {
-	// run the Fib function b.N times
 	data := make([]int, 1000000)
 	for i := 0; i < 1000000; i++ {
 		data[i] = rand.Int()
@@ -129,7 +126,6 @@ func BenchmarkBuiltIn(b *testing.B) {
 	}
 }
 func BenchmarkMergeSortComb(b *testing.B) {
-	// run the Fib function b.N times
 	d := make([]interface{}, len(dataChars), len(dataComb))
 	copy(d, dataComb)
 	for n := 0; n < b.N; n++ {
@@ -137,7 +133,6 @@ func BenchmarkMergeSortComb(b *testing.B) {
 	}
 }
 func BenchmarkMergeSortChars(b *testing.B) {
-	// run the Fib function b.N times
 	d := make([]interface{}, len(dataChars), len(dataChars))
 	copy(d, dataChars)
 	for n := 0; n < b.N; n++ {

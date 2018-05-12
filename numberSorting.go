@@ -43,20 +43,6 @@ func greaterThan(firstNum, secondNum interface{}) (check bool) {
 	return
 }
 
-// func lessThan(firstNum, secondNum interface{}) (check bool) {
-// 	check = false
-// 	if getFloat(firstNum) < getFloat(secondNum) {
-// 		check = true
-// 	}
-// 	return
-// }
-// func greaterThanOrEqual(firstNum, secondNum interface{}) (check bool) {
-// 	check = false
-// 	if getFloat(firstNum) >= getFloat(secondNum) {
-// 		check = true
-// 	}
-// 	return
-// }
 func lessThanOrEqual(firstNum, secondNum interface{}) (check bool) {
 	check = false
 	if getFloat(firstNum) <= getFloat(secondNum) {
