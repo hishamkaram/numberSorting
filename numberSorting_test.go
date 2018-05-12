@@ -99,6 +99,20 @@ func TestBubbleSort(t *testing.T) {
 	BubbleSort(d)
 	assert.Equal(t, d, sortedDataComb)
 }
+func TestMergeSortParallel(t *testing.T) {
+	d := make([]interface{}, len(data), len(data))
+	copy(d, data)
+	MergeSortParallel(d)
+	assert.Equal(t, d, sortedData)
+	d = make([]interface{}, len(dataChars), len(dataChars))
+	copy(d, dataChars)
+	MergeSortParallel(d)
+	assert.Equal(t, d, sortedDataChars)
+	d = make([]interface{}, len(dataComb), len(dataComb))
+	copy(d, dataComb)
+	MergeSortParallel(d)
+	assert.Equal(t, d, sortedDataComb)
+}
 func BenchmarkMergeSort(b *testing.B) {
 	for n := 0; n < b.N; n++ {
 		MergeSort(dataChars)
